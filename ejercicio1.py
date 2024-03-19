@@ -1,3 +1,5 @@
+import random
+
 class TowerOfHanoi:
     def __init__(self, n):
         self.n = n
@@ -10,24 +12,24 @@ class TowerOfHanoi:
 
         for move in range(1, total_moves + 1):
             if move % 3 == 1:
-                self.move_disk(source, target)
+                self.move_piedra(source, target, "A", "grande")
             elif move % 3 == 2:
-                self.move_disk(source, auxiliary)
+                self.move_piedra(source, auxiliary, "B", "pequeña")
             else:
-                self.move_disk(auxiliary, target)
+                self.move_piedra(auxiliary, target, "C", "mediana")
 
             if self.n <= 0:
                 break
 
-    def move_disk(self, from_tower, to_tower):
+    def move_piedra(self, from_tower, to_tower, stone_type, stone_size):
         if self.n <= 0:
             return
 
-        print(f"Move disk from {from_tower} to {to_tower}")
+        print(f"Move {stone_type} {stone_size} from {from_tower} to {to_tower}")
         self.n -= 1
 
 def main():
-    n = 74
+    n = random.randint(0, 74)
     tower = TowerOfHanoi(n)
     tower.move_tower("A", "B", "C")
 
